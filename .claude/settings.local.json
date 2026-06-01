@@ -10,7 +10,9 @@
       "Bash(git commit -m 'docs: Add comprehensive submission checklist *)",
       "Bash(git commit -m 'docs: Add comprehensive delivery summary *)",
       "Bash(npm run *)",
-      "Bash(git commit -m 'fix: Resolve frontend TypeScript compilation errors *)"
+      "Bash(git commit -m 'fix: Resolve frontend TypeScript compilation errors *)",
+      "Bash(git commit -m 'docs: Add comprehensive folder-specific documentation *)",
+      "Bash(git commit -m 'docs: Add comprehensive documentation index *)"
     ]
   }
 }

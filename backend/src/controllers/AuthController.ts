@@ -3,7 +3,7 @@ import User from '../models/User';
 import { generateToken } from '../utils/jwt';
 import { hashPassword, comparePassword } from '../utils/password';
 import { successResponse, errorResponse } from '../utils/response';
-import { AuthRequest } from '../middlewares/auth';
+import { AuthRequest } from '../middleware/auth';
 
 const register = async (req: any, res: Response): Promise<void> => {
   try {

@@ -1,7 +1,7 @@
 import { Router } from 'express';
-import { createComment, getTaskComments, deleteComment } from '../controllers/commentController';
-import { authenticate } from '../middlewares/auth';
-import { validate } from '../middlewares/validate';
+import { createComment, getTaskComments, deleteComment } from '../controllers/CommentController';
+import { authenticate } from '../middleware/auth';
+import { validate } from '../middleware/validate';
 import Joi from 'joi';
 
 const router = Router();

@@ -1,7 +1,7 @@
 import { Response } from 'express';
 import Task from '../models/Task';
 import { successResponse, errorResponse } from '../utils/response';
-import { AuthRequest } from '../middlewares/auth';
+import { AuthRequest } from '../middleware/auth';
 
 const createTask = async (req: any, res: Response): Promise<void> => {
   try {
