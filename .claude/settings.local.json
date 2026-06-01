@@ -18,7 +18,10 @@
       "Bash(git branch *)",
       "Bash(git push *)",
       "Bash(python3 *)",
-      "Bash(git commit -m 'docs: Professional cleanup - remove all emojis and internship references *)"
+      "Bash(git commit -m 'docs: Professional cleanup - remove all emojis and internship references *)",
+      "Bash(psql -h localhost -U primetrade_user -d primetrade -c \"\\\\dt\")",
+      "Bash(PGPASSWORD='primetrade123' psql *)",
+      "Bash(npm install *)"
     ]
   }
 }

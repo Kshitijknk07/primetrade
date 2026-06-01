@@ -1,6 +1,8 @@
 import express, { Express, Request, Response, NextFunction } from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
+import swaggerUi from 'swagger-ui-express';
+import { swaggerSpec } from './swagger';
 
 const app: Express = express();
 
@@ -17,6 +19,9 @@ app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ limit: '10mb', extended: true }));
 
 const apiVersion = process.env.API_VERSION || 'v1';
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, { swaggerOptions: { persistAuthorization: true } }));
+
 app.use(`/api/${apiVersion}/auth`, require('../routes/auth'));
 app.use(`/api/${apiVersion}/users`, require('../routes/users'));
 app.use(`/api/${apiVersion}/tasks`, require('../routes/tasks'));
