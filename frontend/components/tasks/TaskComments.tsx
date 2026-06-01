@@ -73,10 +73,9 @@ export const TaskComments = ({
         <button
           onClick={() => {
             if (!comments) {
-              onFetchComments(taskId).then(() => onAddComment(taskId));
-            } else {
-              onAddComment(taskId);
+              onFetchComments(taskId);
             }
+            onAddComment(taskId);
           }}
           className="px-3 py-2 text-sm bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition"
         >

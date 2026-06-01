@@ -14,13 +14,16 @@ export const apiCall = async <T>(
   const url = `${API_URL}${endpoint}`;
   const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
 
-  const headers: HeadersInit = {
+  const headers: Record<string, string> = {
     'Content-Type': 'application/json',
-    ...options.headers,
   };
 
+  if (options.headers && typeof options.headers === 'object') {
+    Object.assign(headers, options.headers);
+  }
+
   if (token) {
-    headers.Authorization = `Bearer ${token}`;
+    headers['Authorization'] = `Bearer ${token}`;
   }
 
   const response = await fetch(url, {
