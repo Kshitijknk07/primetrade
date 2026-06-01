@@ -24,12 +24,15 @@ export default function LoginPage() {
 
     try {
       const response: any = await authAPI.login(email, password);
+      if (!response.success || !response.data?.token) {
+        throw new Error(response.message || 'Login failed');
+      }
       storage.setToken(response.data.token);
       storage.setUser(response.data);
       toast.success('Logged in successfully!');
       router.push('/dashboard');
     } catch (err: any) {
-      toast.error(err.message);
+      toast.error(err.message || 'Invalid credentials');
     } finally {
       setLoading(false);
     }

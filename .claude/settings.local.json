@@ -25,7 +25,24 @@
       "Bash(curl -s http://localhost:5000/health)",
       "Bash(curl -s -X POST http://localhost:5000/api/v1/auth/login -H 'Content-Type: application/json' -d '{\"email\":\"test@test.com\",\"password\":\"wrongpassword\"}')",
       "Bash(curl -s -X POST http://localhost:5000/api/v1/auth/register -H 'Content-Type: application/json' -d '{ *)",
-      "Bash(curl -s -X POST http://localhost:5000/api/v1/auth/login -H 'Content-Type: application/json' -d '{\"email\":\"testuser@example.com\",\"password\":\"TestPass123!\"}')"
+      "Bash(curl -s -X POST http://localhost:5000/api/v1/auth/login -H 'Content-Type: application/json' -d '{\"email\":\"testuser@example.com\",\"password\":\"TestPass123!\"}')",
+      "Bash(curl -s -X POST http://localhost:5000/api/v1/auth/login -H 'Content-Type: application/json' -d '{\"email\":\"notexist@example.com\",\"password\":\"anypassword\"}')",
+      "Bash(curl -s -X POST http://localhost:5000/api/v1/auth/login -H 'Content-Type: application/json' -d '{\"email\":\"testuser@example.com\",\"password\":\"wrongpassword\"}')",
+      "Bash(curl -i -X POST http://localhost:5000/api/v1/auth/login -H 'Content-Type: application/json' -d '{\"email\":\"testuser@example.com\",\"password\":\"wrongpassword\"}')",
+      "Bash(curl -s -X POST http://localhost:5000/api/v1/auth/login -H 'Content-Type: application/json' -d '{\"email\":\"\",\"password\":\"password123\"}')",
+      "Bash(curl -s -X POST http://localhost:5000/api/v1/auth/login -H 'Content-Type: application/json' -d '{\"email\":\"random@test.com\",\"password\":\"random123\"}')",
+      "Bash(pkill -f \"node dist/index.js\")",
+      "Bash(pkill -f \"ts-node src/index.ts\")",
+      "Bash(curl -s -X POST http://localhost:5000/api/v1/auth/login -H 'Content-Type: application/json' -d '{\"email\":\"kshitijnkwork@gmail.com\",\"password\":\"wrongpassword\"}')",
+      "Bash(curl -s -X POST http://localhost:5000/api/v1/auth/login -H 'Content-Type: application/json' -d '{\"email\":\"kshitijnkwork@gmail.com\",\"password\":\"\"}')",
+      "Bash(curl -s -X POST http://localhost:5000/api/v1/auth/login -H 'Content-Type: application/json' -d '{\"email\":\"randomuser12345@notexist.com\",\"password\":\"RandomPass123!\"}')",
+      "Bash(curl -s -X POST http://localhost:5000/api/v1/auth/login -H 'Content-Type: application/json' -d '{\"email\":\"fakeuser@fake.com\",\"password\":\"FakePass123!\"}')",
+      "Bash(curl -s -i -X POST http://localhost:5000/api/v1/auth/login -H 'Content-Type: application/json' -d '{\"email\":\"random@notexist.com\",\"password\":\"random123\"}')",
+      "Bash(curl -s -X POST http://localhost:5000/api/v1/auth/login -H 'Content-Type: application/json' -d '{\"email\":\"wrong@notexist.com\",\"password\":\"wrongpass\"}')",
+      "Bash(curl *)",
+      "Bash(node test-login.js)",
+      "Bash(node *)",
+      "Bash(git commit -m 'Add comprehensive authentication test guide and verify auth flow working correctly *)"
     ]
   }
 }

@@ -32,14 +32,18 @@ export const apiCall = async <T>(
   });
 
   if (!response.ok) {
+    const error = await response.json();
     if (response.status === 401) {
-      localStorage.removeItem('token');
-      localStorage.removeItem('user');
-      if (typeof window !== 'undefined') {
+      // Only clear session and redirect for authenticated requests where a token was sent.
+      // Do NOT redirect during the login call itself (no token present means this IS the login attempt).
+      const hadToken = !!token;
+      if (hadToken && typeof window !== 'undefined') {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
         window.location.href = '/login';
+        return Promise.reject(new Error(error.message || 'Session expired'));
       }
     }
-    const error = await response.json();
     throw new Error(error.message || 'API Error');
   }
 

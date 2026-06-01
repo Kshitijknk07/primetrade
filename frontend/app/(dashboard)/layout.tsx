@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
 import { storage } from '@/lib/storage';
+import { userAPI } from '@/lib/api';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { useState, useEffect } from 'react';
@@ -17,12 +18,29 @@ export default function DashboardLayout({
   const [user, setUser] = useState<any>(null);
 
   useEffect(() => {
-    const userData = storage.getUser();
-    if (!userData) {
+    const token = storage.getToken();
+    if (!token) {
       router.push('/login');
-    } else {
-      setUser(userData);
+      return;
     }
+    // Verify the token is still valid by making an authenticated request to the server.
+    // If the token is expired or forged the server returns 401, api.ts clears localStorage
+    // and redirects to /login automatically.
+    userAPI.getProfile()
+      .then((response: any) => {
+        if (!response.success || !response.data) {
+          storage.clear();
+          router.push('/login');
+          return;
+        }
+        setUser(response.data);
+      })
+      .catch(() => {
+        // api.ts 401 handler already cleared storage and redirected.
+        // For any other error still redirect to be safe.
+        storage.clear();
+        router.push('/login');
+      });
   }, [router]);
 
   const handleLogout = () => {
