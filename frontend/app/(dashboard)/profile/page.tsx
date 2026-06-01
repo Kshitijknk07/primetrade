@@ -3,6 +3,11 @@
 import { useState, useEffect } from 'react';
 import { userAPI } from '@/lib/api';
 import { storage } from '@/lib/storage';
+import { toast } from 'sonner';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Label } from '@/components/ui/label';
 
 interface UserProfile {
   id: string;
@@ -17,8 +22,7 @@ export default function ProfilePage() {
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState(false);
-  const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
+  const [saving, setSaving] = useState(false);
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -37,9 +41,8 @@ export default function ProfilePage() {
         firstName: response.data.firstName || '',
         lastName: response.data.lastName || '',
       });
-      setError('');
     } catch (err: any) {
-      setError(err.message);
+      toast.error(err.message || 'Failed to load profile');
     } finally {
       setLoading(false);
     }
@@ -47,172 +50,165 @@ export default function ProfilePage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setSaving(true);
 
     try {
-      setSuccess('');
-      setError('');
       const response: any = await userAPI.updateProfile(formData);
       setProfile(response.data);
       storage.setUser(response.data);
       setEditing(false);
-      setSuccess('Profile updated successfully!');
-      setTimeout(() => setSuccess(''), 3000);
+      toast.success('Profile updated successfully');
     } catch (err: any) {
-      setError(err.message);
+      toast.error(err.message || 'Failed to update profile');
+    } finally {
+      setSaving(false);
     }
   };
 
   if (loading) {
     return (
-      <div className="text-center py-12">
-        <p className="text-slate-600">Loading profile...</p>
+      <div className="flex items-center justify-center py-12">
+        <p className="text-slate-600 text-sm">Loading profile...</p>
       </div>
     );
   }
 
   if (!profile) {
     return (
-      <div className="text-center py-12">
-        <p className="text-slate-600">Profile not found</p>
+      <div className="flex items-center justify-center py-12">
+        <p className="text-slate-600 text-sm">Profile not found</p>
       </div>
     );
   }
 
   return (
-    <div className="max-w-2xl">
-      <h1 className="text-3xl font-bold text-slate-900 mb-8">Profile</h1>
+    <div className="max-w-2xl space-y-6">
+      <div>
+        <h1 className="text-2xl font-bold text-slate-900">Profile</h1>
+        <p className="text-sm text-slate-600 mt-1">Manage your account information</p>
+      </div>
 
-      {error && (
-        <div className="mb-4 p-4 bg-red-50 border border-red-200 text-red-700 rounded-lg">
-          {error}
-        </div>
-      )}
-
-      {success && (
-        <div className="mb-4 p-4 bg-green-50 border border-green-200 text-green-700 rounded-lg">
-          {success}
-        </div>
-      )}
-
-      <div className="bg-white rounded-lg border border-slate-200 p-6 space-y-6">
-        <div>
-          <h2 className="text-lg font-semibold text-slate-900 mb-4">
-            Account Information
-          </h2>
-
-          <div className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1">
-                Email
-              </label>
-              <div className="px-4 py-2 bg-slate-50 border border-slate-300 rounded-lg text-slate-700">
-                {profile.email}
-              </div>
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1">
-                Username
-              </label>
-              <div className="px-4 py-2 bg-slate-50 border border-slate-300 rounded-lg text-slate-700">
-                {profile.username}
-              </div>
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1">
-                Role
-              </label>
-              <div className="px-4 py-2 bg-slate-50 border border-slate-300 rounded-lg text-slate-700 capitalize">
-                {profile.role}
-              </div>
+      {/* Account Information Card */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-lg">Account Information</CardTitle>
+          <CardDescription>Your email, username, and account role</CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div>
+            <Label className="text-xs font-semibold text-slate-700 mb-2 block">Email</Label>
+            <div className="px-4 py-3 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-700 font-medium">
+              {profile.email}
             </div>
           </div>
-        </div>
 
-        <div className="border-t border-slate-200 pt-6">
-          <h2 className="text-lg font-semibold text-slate-900 mb-4">
-            Personal Information
-          </h2>
+          <div>
+            <Label className="text-xs font-semibold text-slate-700 mb-2 block">Username</Label>
+            <div className="px-4 py-3 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-700 font-medium">
+              {profile.username}
+            </div>
+          </div>
 
+          <div>
+            <Label className="text-xs font-semibold text-slate-700 mb-2 block">Role</Label>
+            <div className="px-4 py-3 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-700 font-medium capitalize">
+              {profile.role === 'admin' ? (
+                <span className="text-purple-600">Administrator</span>
+              ) : (
+                <span className="text-blue-600">User</span>
+              )}
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Personal Information Card */}
+      <Card>
+        <CardHeader className="flex flex-row items-center justify-between">
+          <div>
+            <CardTitle className="text-lg">Personal Information</CardTitle>
+            <CardDescription>Update your first and last name</CardDescription>
+          </div>
+          {!editing && (
+            <Button
+              onClick={() => setEditing(true)}
+              size="sm"
+              className="bg-black hover:bg-slate-900 text-white"
+            >
+              Edit
+            </Button>
+          )}
+        </CardHeader>
+        <CardContent>
           {!editing ? (
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-1">
-                  First Name
-                </label>
-                <div className="px-4 py-2 bg-slate-50 border border-slate-300 rounded-lg text-slate-700">
-                  {profile.firstName || 'Not set'}
+                <Label className="text-xs font-semibold text-slate-700 mb-2 block">First Name</Label>
+                <div className="px-4 py-3 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-700 font-medium">
+                  {profile.firstName || <span className="text-slate-500">Not set</span>}
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-1">
-                  Last Name
-                </label>
-                <div className="px-4 py-2 bg-slate-50 border border-slate-300 rounded-lg text-slate-700">
-                  {profile.lastName || 'Not set'}
+                <Label className="text-xs font-semibold text-slate-700 mb-2 block">Last Name</Label>
+                <div className="px-4 py-3 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-700 font-medium">
+                  {profile.lastName || <span className="text-slate-500">Not set</span>}
                 </div>
               </div>
-
-              <button
-                onClick={() => setEditing(true)}
-                className="mt-4 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition"
-              >
-                Edit Profile
-              </button>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-1">
+                <Label htmlFor="firstName" className="text-xs font-semibold text-slate-700 mb-2 block">
                   First Name
-                </label>
-                <input
+                </Label>
+                <Input
+                  id="firstName"
                   type="text"
                   value={formData.firstName}
-                  onChange={(e) =>
-                    setFormData({ ...formData, firstName: e.target.value })
-                  }
-                  className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
                   placeholder="John"
+                  className="h-10 bg-white border-slate-200"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-1">
+                <Label htmlFor="lastName" className="text-xs font-semibold text-slate-700 mb-2 block">
                   Last Name
-                </label>
-                <input
+                </Label>
+                <Input
+                  id="lastName"
                   type="text"
                   value={formData.lastName}
-                  onChange={(e) =>
-                    setFormData({ ...formData, lastName: e.target.value })
-                  }
-                  className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
                   placeholder="Doe"
+                  className="h-10 bg-white border-slate-200"
                 />
               </div>
 
-              <div className="flex gap-2 pt-2">
-                <button
+              <div className="flex gap-3 pt-4">
+                <Button
                   type="submit"
-                  className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg transition"
+                  disabled={saving}
+                  className="bg-black hover:bg-slate-900 text-white"
+                  size="sm"
                 >
-                  Save Changes
-                </button>
-                <button
+                  {saving ? 'Saving...' : 'Save Changes'}
+                </Button>
+                <Button
                   type="button"
+                  variant="outline"
                   onClick={() => setEditing(false)}
-                  className="px-4 py-2 bg-slate-300 hover:bg-slate-400 text-slate-900 font-medium rounded-lg transition"
+                  size="sm"
+                  className="border-slate-200"
                 >
                   Cancel
-                </button>
+                </Button>
               </div>
             </form>
           )}
-        </div>
-      </div>
+        </CardContent>
+      </Card>
     </div>
   );
 }
