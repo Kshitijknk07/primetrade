@@ -433,6 +433,14 @@ CMD ["npm", "start"]
 
 ##  Testing
 
+### Authentication Testing
+For detailed step-by-step authentication testing, see [AUTH_TEST_GUIDE.md](./AUTH_TEST_GUIDE.md). This includes:
+- Testing invalid credentials (should fail with error toast)
+- Testing valid credentials (should login successfully)
+- Testing token expiration and session management
+- API-level testing with curl commands
+- Troubleshooting guide
+
 ### Run Tests
 ```bash
 # Backend tests

@@ -348,6 +348,9 @@ xl:  1280px
 
 ##  Testing
 
+### Authentication Testing
+For comprehensive authentication testing with step-by-step instructions, see [AUTH_TEST_GUIDE.md](../AUTH_TEST_GUIDE.md). This includes testing invalid credentials, valid credentials, token expiration, and session management.
+
 ### Manual Testing Checklist
 - [ ] Can register new user
 - [ ] Can login with email and password

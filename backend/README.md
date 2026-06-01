@@ -447,6 +447,9 @@ CREATE INDEX idx_comments_user_id ON "Comments"("userId");
 
 ##  Testing
 
+### Authentication Flow Testing
+For comprehensive authentication testing including invalid credentials, valid credentials, and edge cases, see [AUTH_TEST_GUIDE.md](../AUTH_TEST_GUIDE.md).
+
 ### Test All Endpoints
 ```bash
 # Register
