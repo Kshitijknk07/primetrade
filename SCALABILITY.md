@@ -4,7 +4,7 @@
 
 This document outlines the scalability architecture for the Primetrade REST API project. The current implementation is designed for quick deployment and local development, but this document describes how to scale it for production use with thousands of concurrent users.
 
-**Current Status:** Ready for ~100-1000 concurrent users on a single server  
+**Current Status:** Ready for ~100-1000 concurrent users on a single server
 **Target Scalability:** 10,000+ concurrent users across distributed infrastructure
 
 ---
@@ -13,27 +13,27 @@ This document outlines the scalability architecture for the Primetrade REST API 
 
 ### Single-Server Setup
 ```
-┌─────────────────────────────────────┐
-│    Frontend (Next.js)               │
-│    Port 3000                        │
-└──────────────┬──────────────────────┘
-               │
-               ↓
-┌─────────────────────────────────────┐
-│    Backend (Express.js)             │
-│    Port 5000                        │
-├─────────────────────────────────────┤
-│  ├─ Auth Controllers                │
-│  ├─ Task CRUD                       │
-│  ├─ Comment CRUD                    │
-│  └─ Admin Functions                 │
-└──────────────┬──────────────────────┘
-               │
-               ↓
-┌─────────────────────────────────────┐
-│  PostgreSQL Database                │
-│  Local: localhost:5432              │
-└─────────────────────────────────────┘
+
+    Frontend (Next.js)
+    Port 3000
+
+
+
+
+    Backend (Express.js)
+    Port 5000
+
+   Auth Controllers
+   Task CRUD
+   Comment CRUD
+   Admin Functions
+
+
+
+
+  PostgreSQL Database
+  Local: localhost:5432
+
 ```
 
 ### Limitations
@@ -48,9 +48,9 @@ This document outlines the scalability architecture for the Primetrade REST API 
 
 ## 2. Phased Scaling Strategy
 
-### Phase 1: Ready for Production (Current → Week 1)
-**Goal:** Deploy to a single production server  
-**Capacity:** 100-500 concurrent users  
+### Phase 1: Ready for Production (Current  Week 1)
+**Goal:** Deploy to a single production server
+**Capacity:** 100-500 concurrent users
 
 **Implementation:**
 ```bash
@@ -78,30 +78,30 @@ pm2 save
 ---
 
 ### Phase 2: Horizontal Scaling (Week 2-3)
-**Goal:** Scale to multiple backend instances  
-**Capacity:** 1,000-5,000 concurrent users  
+**Goal:** Scale to multiple backend instances
+**Capacity:** 1,000-5,000 concurrent users
 
 #### Load Balancer
 ```
-                    ┌─────────────────┐
-                    │  Nginx LB       │
-                    │  Port 80, 443   │
-                    └────────┬────────┘
-         ┌──────────────┬────┴─────┬──────────────┐
-         ↓              ↓          ↓              ↓
-    ┌────────┐    ┌────────┐  ┌────────┐    ┌────────┐
-    │API #1  │    │API #2  │  │API #3  │    │API #4  │
-    │:5001   │    │:5002   │  │:5003   │    │:5004   │
-    └────────┘    └────────┘  └────────┘    └────────┘
-         │              │          │              │
-         └──────────────┴────┬─────┴──────────────┘
-                            ↓
-                ┌───────────────────────┐
-                │  PostgreSQL Cluster   │
-                │  - Master (write)     │
-                │  - Replica (read)     │
-                │  - Replica (read)     │
-                └───────────────────────┘
+
+                      Nginx LB
+                      Port 80, 443
+
+
+
+
+    API #1      API #2    API #3      API #4
+    :5001       :5002     :5003       :5004
+
+
+
+
+
+                  PostgreSQL Cluster
+                  - Master (write)
+                  - Replica (read)
+                  - Replica (read)
+
 ```
 
 **Implementation:**
@@ -170,26 +170,26 @@ const sequelize = new Sequelize({
 ---
 
 ### Phase 3: Caching Layer (Week 3-4)
-**Goal:** Reduce database load  
-**Capacity:** 5,000-10,000 concurrent users  
+**Goal:** Reduce database load
+**Capacity:** 5,000-10,000 concurrent users
 
 #### Redis Cache Implementation
 
 ```
-               ┌──────────────────┐
-               │  Request         │
-               └────────┬─────────┘
-                        ↓
-             ┌────────────────────────┐
-             │ Check Redis Cache      │
-             └─┬──────────────────┬───┘
-               │ (HIT)            │ (MISS)
-               ↓                  ↓
-          ┌────────┐      ┌──────────────┐
-          │Return  │      │Query Database│
-          │Cached  │      │& Cache Result│
-          │Data    │      └──────────────┘
-          └────────┘
+
+                 Request
+
+
+
+              Check Redis Cache
+
+                (HIT)             (MISS)
+
+
+          Return        Query Database
+          Cached        & Cache Result
+          Data
+
 ```
 
 **Backend Code Example:**
@@ -214,10 +214,10 @@ export const getCachedOrFetch = async (key: string, fetchFn: () => Promise<any>,
 
     // If not in cache, fetch from DB
     const data = await fetchFn();
-    
+
     // Store in cache with TTL (5 minutes default)
     await redis.setex(key, ttl, JSON.stringify(data));
-    
+
     return data;
 };
 
@@ -243,32 +243,32 @@ export const invalidateCache = (pattern: string) => {
 ---
 
 ### Phase 4: Microservices Architecture (Month 2)
-**Goal:** Independent scaling of services  
-**Capacity:** 10,000+ concurrent users  
+**Goal:** Independent scaling of services
+**Capacity:** 10,000+ concurrent users
 
 #### Service Decomposition
 
 ```
 API Gateway (Kong)
-    │
-    ├─ Auth Service (auth-service:5001)
-    │   ├─ Register
-    │   ├─ Login
-    │   └─ Token Refresh
-    │
-    ├─ Task Service (task-service:5002)
-    │   ├─ CRUD Tasks
-    │   └─ Fetch Comments
-    │
-    ├─ Comment Service (comment-service:5003)
-    │   ├─ Add Comments
-    │   ├─ Delete Comments
-    │   └─ Fetch Comments
-    │
-    └─ User Service (user-service:5004)
-        ├─ User Profile
-        ├─ Role Management
-        └─ Admin Functions
+
+     Auth Service (auth-service:5001)
+        Register
+        Login
+        Token Refresh
+
+     Task Service (task-service:5002)
+        CRUD Tasks
+        Fetch Comments
+
+     Comment Service (comment-service:5003)
+        Add Comments
+        Delete Comments
+        Fetch Comments
+
+     User Service (user-service:5004)
+         User Profile
+         Role Management
+         Admin Functions
 ```
 
 **Benefits:**
@@ -282,8 +282,8 @@ API Gateway (Kong)
 ---
 
 ### Phase 5: Asynchronous Processing (Month 2-3)
-**Goal:** Handle heavy operations without blocking requests  
-**Example:** Send emails, generate reports, process bulk operations  
+**Goal:** Handle heavy operations without blocking requests
+**Example:** Send emails, generate reports, process bulk operations
 
 ```typescript
 // Use Bull queue for job processing
@@ -376,20 +376,20 @@ const sequelize = new Sequelize(dbUrl, {
 **Cloudflare Setup:**
 ```
 Domain: api.example.com
-├─ Caching Rules
-│  ├─ /api-docs: Cache static (1 hour)
-│  ├─ /api/*: No cache (API responses vary)
-│  └─ /static/*: Long-term cache (1 year)
-│
-├─ Security
-│  ├─ WAF (Web Application Firewall)
-│  ├─ Rate Limiting: 100 req/minute per IP
-│  └─ DDoS Protection
-│
-└─ Performance
-   ├─ Minify CSS/JS
-   ├─ Gzip Compression
-   └─ HTTP/2 & HTTP/3
+ Caching Rules
+   /api-docs: Cache static (1 hour)
+   /api/*: No cache (API responses vary)
+   /static/*: Long-term cache (1 year)
+
+ Security
+   WAF (Web Application Firewall)
+   Rate Limiting: 100 req/minute per IP
+   DDoS Protection
+
+ Performance
+    Minify CSS/JS
+    Gzip Compression
+    HTTP/2 & HTTP/3
 ```
 
 ### Next.js Static Generation
@@ -445,16 +445,16 @@ app.use((req, res, next) => {
 
 ```
 Application
-    ↓
+
 Prometheus (metrics scraping)
-    ↓
+
 Grafana (dashboards)
-    ↓
+
 AlertManager (alerts)
 
 Logs:
-Application → ELK Stack (Elasticsearch, Logstash, Kibana)
-    ↓
+Application  ELK Stack (Elasticsearch, Logstash, Kibana)
+
 Real-time log analysis & search
 ```
 
@@ -677,7 +677,7 @@ This allows growth from hundreds to tens of thousands of users while maintaining
 
 ---
 
-**Document Version:** 1.0  
-**Last Updated:** June 1, 2026  
-**Author:** Internship Project  
+**Document Version:** 1.0
+**Last Updated:** June 1, 2026
+**Author:**  Project
 **Status:** Production Ready

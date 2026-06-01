@@ -1,4 +1,4 @@
-# Primetrade Internship Project: Scalable REST API with Authentication & Role-Based Access
+# Primetrade REST API: Scalable REST API with Authentication & Role-Based Access
 
 A full-stack application featuring a secure REST API with JWT authentication, role-based access control, and a responsive Next.js frontend. Built with Express.js, TypeScript, PostgreSQL, and Next.js.
 
@@ -21,34 +21,34 @@ This project demonstrates a production-ready backend system with:
 
 ```
 backend/
-├── src/
-│   ├── config/          # App and database configuration
-│   ├── controllers/     # Business logic (auth, tasks, comments, users, admin)
-│   ├── models/          # Database models (User, Task, Comment)
-│   ├── routes/          # Express route definitions
-│   ├── middlewares/     # Authentication and validation middleware
-│   ├── validators/      # Input validation schemas
-│   └── utils/           # JWT, password hashing, response formatting
-├── dist/                # Compiled JavaScript
-├── package.json
-└── tsconfig.json
+ src/
+    config/          # App and database configuration
+    controllers/     # Business logic (auth, tasks, comments, users, admin)
+    models/          # Database models (User, Task, Comment)
+    routes/          # Express route definitions
+    middlewares/     # Authentication and validation middleware
+    validators/      # Input validation schemas
+    utils/           # JWT, password hashing, response formatting
+ dist/                # Compiled JavaScript
+ package.json
+ tsconfig.json
 ```
 
 ### Frontend Structure
 
 ```
 frontend/
-├── app/                 # Next.js app directory
-│   ├── (auth)/          # Authentication pages (login, register)
-│   ├── (dashboard)/     # Protected dashboard pages
-│   └── layout.tsx       # Root layout
-├── components/          # React components
-│   ├── ui/              # Shadcn/UI components
-│   └── tasks/           # Task management components
-├── lib/                 # Utility functions (API client, helpers)
-├── hooks/               # Custom React hooks
-├── types/               # TypeScript types
-└── package.json
+ app/                 # Next.js app directory
+    (auth)/          # Authentication pages (login, register)
+    (dashboard)/     # Protected dashboard pages
+    layout.tsx       # Root layout
+ components/          # React components
+    ui/              # Shadcn/UI components
+    tasks/           # Task management components
+ lib/                 # Utility functions (API client, helpers)
+ hooks/               # Custom React hooks
+ types/               # TypeScript types
+ package.json
 ```
 
 ##  Quick Start
@@ -79,16 +79,16 @@ frontend/
    DB_USER=postgres
    DB_PASSWORD=your_password
    DB_NAME=primetrade
-   
+
    # JWT
    JWT_SECRET=your_super_secret_jwt_key_min_32_characters_long
    JWT_EXPIRE=7d
-   
+
    # API
    PORT=5000
    NODE_ENV=development
    API_VERSION=v1
-   
+
    # CORS
    CORS_ORIGIN=http://localhost:3000
    ```
@@ -102,7 +102,7 @@ frontend/
    ```bash
    # Development with auto-reload
    npm run dev:watch
-   
+
    # Production build
    npm run build
    npm start
@@ -216,7 +216,7 @@ Content-Type: application/json
 
 {
   "title": "Complete project",
-  "description": "Finish the internship project",
+  "description": "Finish the  project",
   "status": "in_progress",
   "priority": "high",
   "dueDate": "2026-06-05"
@@ -380,16 +380,16 @@ http://localhost:5000/api-docs
 #### Microservices Architecture
 ```
 API Gateway (nginx)
-    ├── Auth Service (Port 5001)
-    ├── Task Service (Port 5002)
-    ├── User Service (Port 5003)
-    └── Comment Service (Port 5004)
+     Auth Service (Port 5001)
+     Task Service (Port 5002)
+     User Service (Port 5003)
+     Comment Service (Port 5004)
 
 Shared Resources:
-    ├── PostgreSQL Master (write)
-    ├── PostgreSQL Read Replicas
-    ├── Redis (session & cache)
-    └── Message Queue (async tasks)
+     PostgreSQL Master (write)
+     PostgreSQL Read Replicas
+     Redis (session & cache)
+     Message Queue (async tasks)
 ```
 
 #### Database Optimization
@@ -490,17 +490,17 @@ CREATE TABLE "Comments" (
 );
 ```
 
-## 🤝 Contributing
+##  Contributing
 
-This is an internship project. For improvements or bug reports, please open an issue or submit a pull request.
+This is an  project. For improvements or bug reports, please open an issue or submit a pull request.
 
-## 📝 License
+##  License
 
 MIT License - See LICENSE file for details
 
-## 👤 Author
+##  Author
 
-**Kshitij** - Internship Project 2026
+**Kshitij** -  Project 2026
 
 ---
 
@@ -513,6 +513,6 @@ For issues or questions:
 
 ---
 
-**Last Updated:** June 1, 2026  
-**Version:** 1.0.0  
+**Last Updated:** June 1, 2026
+**Version:** 1.0.0
 **Status:** Production Ready

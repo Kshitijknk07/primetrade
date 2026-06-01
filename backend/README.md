@@ -1,8 +1,8 @@
-# Backend API - Primetrade Internship Project
+# Backend API - Primetrade REST API
 
 Complete REST API built with Express.js, TypeScript, and PostgreSQL. Features JWT authentication, role-based access control, and comprehensive CRUD operations.
 
-## 📋 Quick Start
+##  Quick Start
 
 ### Prerequisites
 - Node.js 18+
@@ -24,16 +24,16 @@ Complete REST API built with Express.js, TypeScript, and PostgreSQL. Features JW
    DB_USER=postgres
    DB_PASSWORD=your_secure_password
    DB_NAME=primetrade
-   
+
    # JWT Configuration
    JWT_SECRET=your_super_secret_jwt_key_min_32_characters_long
    JWT_EXPIRE=7d
-   
+
    # Server Configuration
    PORT=5000
    NODE_ENV=development
    API_VERSION=v1
-   
+
    # CORS Configuration
    CORS_ORIGIN=http://localhost:3000
    ```
@@ -47,59 +47,59 @@ Complete REST API built with Express.js, TypeScript, and PostgreSQL. Features JW
    ```bash
    npm run dev:watch
    ```
-   
+
    Server will run on `http://localhost:5000`
 
 ##  Project Structure
 
 ```
 backend/
-├── src/
-│   ├── config/
-│   │   ├── app.ts              # Express app configuration with middleware
-│   │   └── database.ts         # Sequelize database configuration
-│   │
-│   ├── controllers/            # Business logic handlers
-│   │   ├── authController.ts   # Registration, login, logout
-│   │   ├── taskController.ts   # Task CRUD operations
-│   │   ├── commentController.ts # Comment management
-│   │   ├── userController.ts   # User profile & management
-│   │   └── adminController.ts  # Admin operations
-│   │
-│   ├── models/                 # Database models
-│   │   ├── User.ts             # User schema with roles
-│   │   ├── Task.ts             # Task entity
-│   │   └── Comment.ts          # Comment entity
-│   │
-│   ├── routes/                 # Express routes
-│   │   ├── auth.ts             # Authentication endpoints
-│   │   ├── tasks.ts            # Task CRUD endpoints
-│   │   ├── comments.ts         # Comment endpoints
-│   │   ├── users.ts            # User endpoints
-│   │   └── admin.ts            # Admin endpoints
-│   │
-│   ├── middlewares/            # Custom middleware
-│   │   ├── auth.ts             # JWT verification & role-based access
-│   │   └── validate.ts         # Request validation
-│   │
-│   ├── validators/             # Input validation schemas
-│   │   ├── authValidator.ts    # Auth request validation
-│   │   └── taskValidator.ts    # Task request validation
-│   │
-│   ├── utils/                  # Helper functions
-│   │   ├── jwt.ts              # Token generation & verification
-│   │   ├── password.ts         # Password hashing & comparison
-│   │   └── response.ts         # Standardized API responses
-│   │
-│   └── index.ts                # Server entry point
-│
-├── dist/                       # Compiled JavaScript (generated)
-├── package.json
-├── tsconfig.json
-└── README.md                   # This file
+ src/
+    config/
+       app.ts              # Express app configuration with middleware
+       database.ts         # Sequelize database configuration
+
+    controllers/            # Business logic handlers
+       authController.ts   # Registration, login, logout
+       taskController.ts   # Task CRUD operations
+       commentController.ts # Comment management
+       userController.ts   # User profile & management
+       adminController.ts  # Admin operations
+
+    models/                 # Database models
+       User.ts             # User schema with roles
+       Task.ts             # Task entity
+       Comment.ts          # Comment entity
+
+    routes/                 # Express routes
+       auth.ts             # Authentication endpoints
+       tasks.ts            # Task CRUD endpoints
+       comments.ts         # Comment endpoints
+       users.ts            # User endpoints
+       admin.ts            # Admin endpoints
+
+    middlewares/            # Custom middleware
+       auth.ts             # JWT verification & role-based access
+       validate.ts         # Request validation
+
+    validators/             # Input validation schemas
+       authValidator.ts    # Auth request validation
+       taskValidator.ts    # Task request validation
+
+    utils/                  # Helper functions
+       jwt.ts              # Token generation & verification
+       password.ts         # Password hashing & comparison
+       response.ts         # Standardized API responses
+
+    index.ts                # Server entry point
+
+ dist/                       # Compiled JavaScript (generated)
+ package.json
+ tsconfig.json
+ README.md                   # This file
 ```
 
-## 🔑 Key Features
+##  Key Features
 
 ### Authentication & Security
 - **User Registration:** Email, username, password with validation
@@ -203,7 +203,7 @@ Content-Type: application/json
 
 {
   "title": "Complete project",
-  "description": "Finish the internship project",
+  "description": "Finish the  project",
   "status": "in_progress",
   "priority": "high",
   "dueDate": "2026-06-05"
@@ -558,7 +558,7 @@ Solution:
    lsof -ti:5000 | xargs kill -9
 ```
 
-## 📝 Scripts
+##  Scripts
 
 ```bash
 # Development
@@ -573,7 +573,7 @@ npm start           # Run compiled JavaScript
 npm run lint        # Check code style
 ```
 
-## 🔗 Related Documentation
+##  Related Documentation
 
 - [Main Project README](../README.md) - Full project overview
 - [Scalability Guide](../SCALABILITY.md) - How to scale the API
@@ -589,6 +589,6 @@ For API-specific questions:
 
 ---
 
-**Version:** 1.0.0  
-**Last Updated:** June 1, 2026  
-**Status:** Production Ready 
+**Version:** 1.0.0
+**Last Updated:** June 1, 2026
+**Status:** Production Ready

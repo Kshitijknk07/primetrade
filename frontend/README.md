@@ -1,8 +1,8 @@
-# Frontend UI - Primetrade Internship Project
+# Frontend UI - Primetrade REST API
 
 Modern React/Next.js frontend application with TypeScript, Tailwind CSS, and Shadcn/UI components. Features user authentication, protected routes, and comprehensive task management interface.
 
-## 📋 Quick Start
+##  Quick Start
 
 ### Prerequisites
 - Node.js 18+
@@ -25,81 +25,81 @@ Modern React/Next.js frontend application with TypeScript, Tailwind CSS, and Sha
    ```bash
    npm run dev
    ```
-   
+
    Application will run on `http://localhost:3000`
 
 ##  Project Structure
 
 ```
 frontend/
-├── app/                        # Next.js App Router
-│   ├── (auth)/                # Authentication route group
-│   │   ├── layout.tsx         # Auth layout wrapper
-│   │   ├── login/
-│   │   │   └── page.tsx       # Login page
-│   │   └── register/
-│   │       └── page.tsx       # Registration page
-│   │
-│   ├── (dashboard)/           # Protected route group
-│   │   ├── layout.tsx         # Dashboard layout with sidebar
-│   │   ├── dashboard/
-│   │   │   └── page.tsx       # Main dashboard (task list)
-│   │   ├── admin/
-│   │   │   └── page.tsx       # Admin panel (user management)
-│   │   └── profile/
-│   │       └── page.tsx       # User profile page
-│   │
-│   ├── layout.tsx             # Root layout
-│   ├── page.tsx               # Home/landing page
-│   └── globals.css            # Global styles
-│
-├── components/                # React components
-│   ├── ui/                    # Shadcn/UI base components
-│   │   ├── button.tsx
-│   │   ├── input.tsx
-│   │   ├── card.tsx
-│   │   ├── dialog.tsx
-│   │   ├── alert-dialog.tsx
-│   │   ├── table.tsx
-│   │   ├── label.tsx
-│   │   ├── checkbox.tsx
-│   │   ├── separator.tsx
-│   │   └── ... (other UI components)
-│   │
-│   ├── login-form.tsx         # Login form component
-│   ├── PasswordInput.tsx       # Password input with visibility toggle
-│   ├── PasswordStrengthGuide.tsx # Password strength indicator
-│   ├── AdminPanel.tsx         # Admin user management
-│   │
-│   └── tasks/                 # Task management components
-│       ├── TaskList.tsx       # Displays all user tasks
-│       ├── TaskCard.tsx       # Individual task display
-│       ├── TaskForm.tsx       # Create/edit task form
-│       ├── TaskFilters.tsx    # Filter tasks by status/priority
-│       ├── TaskComments.tsx   # Comments section for tasks
-│       └── BulkActions.tsx    # Bulk task operations
-│
-├── hooks/                     # Custom React hooks
-│   ├── useTasks.ts           # Task CRUD operations hook
-│   └── useTaskComments.ts    # Comment management hook
-│
-├── lib/                       # Utility functions
-│   ├── api.ts                # API client with bearer token
-│   ├── storage.ts            # localStorage/cookie management
-│   ├── task-utils.ts         # Task-related utilities
-│   └── utils.ts              # General utilities
-│
-├── types/                     # TypeScript type definitions
-│   └── task.ts               # Task and comment types
-│
-├── middleware.ts             # Next.js middleware for route protection
-├── next.config.ts           # Next.js configuration
-├── tsconfig.json            # TypeScript configuration
-├── tailwind.config.ts       # Tailwind CSS configuration
-├── components.json          # Shadcn/UI components config
-├── postcss.config.mjs       # PostCSS configuration
-├── package.json
-└── README.md                # This file
+ app/                        # Next.js App Router
+    (auth)/                # Authentication route group
+       layout.tsx         # Auth layout wrapper
+       login/
+          page.tsx       # Login page
+       register/
+           page.tsx       # Registration page
+
+    (dashboard)/           # Protected route group
+       layout.tsx         # Dashboard layout with sidebar
+       dashboard/
+          page.tsx       # Main dashboard (task list)
+       admin/
+          page.tsx       # Admin panel (user management)
+       profile/
+           page.tsx       # User profile page
+
+    layout.tsx             # Root layout
+    page.tsx               # Home/landing page
+    globals.css            # Global styles
+
+ components/                # React components
+    ui/                    # Shadcn/UI base components
+       button.tsx
+       input.tsx
+       card.tsx
+       dialog.tsx
+       alert-dialog.tsx
+       table.tsx
+       label.tsx
+       checkbox.tsx
+       separator.tsx
+       ... (other UI components)
+
+    login-form.tsx         # Login form component
+    PasswordInput.tsx       # Password input with visibility toggle
+    PasswordStrengthGuide.tsx # Password strength indicator
+    AdminPanel.tsx         # Admin user management
+
+    tasks/                 # Task management components
+        TaskList.tsx       # Displays all user tasks
+        TaskCard.tsx       # Individual task display
+        TaskForm.tsx       # Create/edit task form
+        TaskFilters.tsx    # Filter tasks by status/priority
+        TaskComments.tsx   # Comments section for tasks
+        BulkActions.tsx    # Bulk task operations
+
+ hooks/                     # Custom React hooks
+    useTasks.ts           # Task CRUD operations hook
+    useTaskComments.ts    # Comment management hook
+
+ lib/                       # Utility functions
+    api.ts                # API client with bearer token
+    storage.ts            # localStorage/cookie management
+    task-utils.ts         # Task-related utilities
+    utils.ts              # General utilities
+
+ types/                     # TypeScript type definitions
+    task.ts               # Task and comment types
+
+ middleware.ts             # Next.js middleware for route protection
+ next.config.ts           # Next.js configuration
+ tsconfig.json            # TypeScript configuration
+ tailwind.config.ts       # Tailwind CSS configuration
+ components.json          # Shadcn/UI components config
+ postcss.config.mjs       # PostCSS configuration
+ package.json
+ README.md                # This file
 ```
 
 ##  Key Features
@@ -143,7 +143,7 @@ frontend/
 - **Theme:** next-themes
 - **HTTP Client:** Fetch API
 
-## 📄 Pages & Routes
+##  Pages & Routes
 
 ### Public Routes (No Auth Required)
 ```
@@ -256,7 +256,7 @@ Pre-built, accessible components:
 - Table, Checkbox
 - Separator, Select, etc.
 
-## 🪝 Custom Hooks
+##  Custom Hooks
 
 ### useTasks
 ```typescript
@@ -285,7 +285,7 @@ const {
 
 Manages comments for a specific task.
 
-## 📡 API Integration
+##  API Integration
 
 ### API Client (`lib/api.ts`)
 - Centralized API configuration
@@ -335,7 +335,7 @@ npm run start
 
 Serves the production build.
 
-## 📱 Responsive Design
+##  Responsive Design
 
 Breakpoints for responsive design:
 ```
@@ -366,7 +366,7 @@ xl:  1280px
 - [ ] Error messages display
 - [ ] Success messages display
 
-## 🌐 Environment Configuration
+##  Environment Configuration
 
 ### Development
 ```
@@ -413,7 +413,7 @@ Issue: Logged out after page reload
 
 Solution:
 1. localStorage should store 'token' key
-2. Check browser's Application → Storage → LocalStorage
+2. Check browser's Application  Storage  LocalStorage
 3. Middleware might be clearing it on 401
 ```
 
@@ -437,7 +437,7 @@ Solution:
 3. Verify @types packages are in devDependencies
 ```
 
-## 📝 Scripts
+##  Scripts
 
 ```bash
 # Development
@@ -451,7 +451,7 @@ npm run start    # Start production server
 npm run lint     # Run ESLint (if configured)
 ```
 
-## 🔗 Related Documentation
+##  Related Documentation
 
 - [Main Project README](../README.md) - Full project overview
 - [Backend README](../backend/README.md) - Backend API documentation
@@ -485,6 +485,6 @@ Create components in `components/` and import in pages.
 
 ---
 
-**Version:** 1.0.0  
-**Last Updated:** June 1, 2026  
-**Status:** Production Ready 
+**Version:** 1.0.0
+**Last Updated:** June 1, 2026
+**Status:** Production Ready
