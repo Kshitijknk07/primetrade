@@ -1,23 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-const protectedRoutes = ['/dashboard', '/profile', '/tasks'];
-const publicRoutes = ['/login', '/register'];
-
-export function middleware(request: NextRequest) {
-  const token = request.cookies.get('token')?.value;
-  const { pathname } = request.nextUrl;
-
-  const isProtected = protectedRoutes.some(route => pathname.startsWith(route));
-  const isPublic = publicRoutes.some(route => pathname.startsWith(route));
-
-  if (isProtected && !token) {
-    return NextResponse.redirect(new URL('/login', request.url));
-  }
-
-  if (isPublic && token) {
-    return NextResponse.redirect(new URL('/dashboard', request.url));
-  }
-
+export function middleware(_request: NextRequest) {
+  // Client-side auth handling via localStorage is sufficient
+  // All routes are accessible; client-side redirects handle auth
+  // Protected pages check localStorage directly
   return NextResponse.next();
 }
 
