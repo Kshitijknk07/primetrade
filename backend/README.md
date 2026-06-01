@@ -50,7 +50,7 @@ Complete REST API built with Express.js, TypeScript, and PostgreSQL. Features JW
    
    Server will run on `http://localhost:5000`
 
-## 🏗️ Project Structure
+##  Project Structure
 
 ```
 backend/
@@ -121,7 +121,7 @@ backend/
 - **Error Handling:** Comprehensive error messages with proper status codes
 - **CORS Support:** Configured for frontend integration
 
-## 📚 API Endpoints
+##  API Endpoints
 
 ### Base URL
 ```
@@ -367,7 +367,7 @@ Content-Type: application/json
 Response: 200 OK
 ```
 
-## 🔐 Security Details
+##  Security Details
 
 ### Password Hashing
 - Algorithm: bcryptjs
@@ -393,7 +393,7 @@ Response: 200 OK
 - Rate limiting ready (can be added)
 - User isolation in queries (cannot access other users' data)
 
-## 📊 Database Schema
+##  Database Schema
 
 ### Users Table
 ```sql
@@ -445,7 +445,7 @@ CREATE INDEX idx_comments_task_id ON "Comments"("taskId");
 CREATE INDEX idx_comments_user_id ON "Comments"("userId");
 ```
 
-## 🧪 Testing
+##  Testing
 
 ### Test All Endpoints
 ```bash
@@ -473,7 +473,7 @@ curl -X GET http://localhost:5000/api/v1/tasks \
 curl http://localhost:5000/health
 ```
 
-## 🚀 Production Deployment
+##  Production Deployment
 
 ### Build for Production
 ```bash
@@ -511,7 +511,7 @@ PORT=5000
 CORS_ORIGIN=https://yourdomain.com
 ```
 
-## 📈 Performance Optimization
+##  Performance Optimization
 
 ### Database Optimization
 - Indexes on frequently queried columns
@@ -526,7 +526,7 @@ CORS_ORIGIN=https://yourdomain.com
 ### Scaling Strategy
 See `../SCALABILITY.md` for detailed multi-instance and microservices approach.
 
-## 🐛 Troubleshooting
+##  Troubleshooting
 
 ### Database Connection Error
 ```
@@ -579,7 +579,7 @@ npm run lint        # Check code style
 - [Scalability Guide](../SCALABILITY.md) - How to scale the API
 - [Frontend README](../frontend/README.md) - Frontend setup and usage
 
-## 📞 Support
+##  Support
 
 For API-specific questions:
 1. Check the API Endpoints section above
@@ -591,4 +591,4 @@ For API-specific questions:
 
 **Version:** 1.0.0  
 **Last Updated:** June 1, 2026  
-**Status:** Production Ready ✅
+**Status:** Production Ready 

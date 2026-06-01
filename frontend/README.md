@@ -28,7 +28,7 @@ Modern React/Next.js frontend application with TypeScript, Tailwind CSS, and Sha
    
    Application will run on `http://localhost:3000`
 
-## 🏗️ Project Structure
+##  Project Structure
 
 ```
 frontend/
@@ -102,7 +102,7 @@ frontend/
 └── README.md                # This file
 ```
 
-## 🎨 Key Features
+##  Key Features
 
 ### Authentication
 - **Registration Page:** Create new user account with validation
@@ -132,7 +132,7 @@ frontend/
 - **Error Handling:** User-friendly error messages
 - **Confirmation Dialogs:** Alert dialogs for destructive actions
 
-## 🛠️ Technology Stack
+##  Technology Stack
 
 - **Framework:** Next.js 16 (App Router)
 - **Language:** TypeScript 5
@@ -159,7 +159,7 @@ frontend/
 /dashboard/profile - User profile page
 ```
 
-## 📊 Components Overview
+##  Components Overview
 
 ### Task Management Components
 
@@ -217,7 +217,7 @@ frontend/
   - Contains number
   - Contains special character
 
-## 🔐 Security Features
+##  Security Features
 
 ### Authentication
 - JWT tokens stored securely in localStorage
@@ -241,7 +241,7 @@ frontend/
 - Only authenticated requests succeed
 - Error responses don't leak sensitive info
 
-## 🎨 Styling
+##  Styling
 
 ### Tailwind CSS
 - Utility-first CSS framework
@@ -312,7 +312,7 @@ GET    /users                - List all users (admin)
 PUT    /admin/users/:id/role - Update user role (admin)
 ```
 
-## 🚀 Development
+##  Development
 
 ### Run Development Server
 ```bash
@@ -346,7 +346,7 @@ xl:  1280px
 2xl: 1536px
 ```
 
-## 🧪 Testing
+##  Testing
 
 ### Manual Testing Checklist
 - [ ] Can register new user
@@ -378,7 +378,7 @@ NEXT_PUBLIC_API_URL=http://localhost:5000/api/v1
 NEXT_PUBLIC_API_URL=https://api.yourdomain.com/api/v1
 ```
 
-## 📊 State Management
+##  State Management
 
 Uses React hooks for state management:
 - `useState` for component-level state
@@ -386,7 +386,7 @@ Uses React hooks for state management:
 - Custom hooks for shared logic
 - localStorage for token persistence
 
-## 🎯 Performance Optimization
+##  Performance Optimization
 
 - Next.js static generation where possible
 - Image optimization
@@ -395,7 +395,7 @@ Uses React hooks for state management:
 - Efficient re-renders with React.memo
 - ISR (Incremental Static Regeneration) ready
 
-## 🐛 Troubleshooting
+##  Troubleshooting
 
 ### Cannot connect to API
 ```
@@ -457,7 +457,7 @@ npm run lint     # Run ESLint (if configured)
 - [Backend README](../backend/README.md) - Backend API documentation
 - [Scalability Guide](../SCALABILITY.md) - How to scale the application
 
-## 📞 Support
+##  Support
 
 For frontend-specific questions:
 1. Review the component code in `components/`
@@ -466,7 +466,7 @@ For frontend-specific questions:
 4. Check type definitions in `types/`
 5. Test endpoints using browser DevTools Network tab
 
-## 🎨 Customization
+##  Customization
 
 ### Change API URL
 Edit `.env.local`:
@@ -487,4 +487,4 @@ Create components in `components/` and import in pages.
 
 **Version:** 1.0.0  
 **Last Updated:** June 1, 2026  
-**Status:** Production Ready ✅
+**Status:** Production Ready 

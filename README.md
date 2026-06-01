@@ -1,21 +1,21 @@
 # Primetrade Internship Project: Scalable REST API with Authentication & Role-Based Access
 
-A full-stack application featuring a secure REST API with JWT authentication, role-based access control, and a responsive Next.js frontend UI. Built with Node.js, Express, TypeScript, PostgreSQL, and Next.js.
+A full-stack application featuring a secure REST API with JWT authentication, role-based access control, and a responsive Next.js frontend. Built with Express.js, TypeScript, PostgreSQL, and Next.js.
 
-## 🎯 Project Overview
+## Project Overview
 
-This project demonstrates a **production-ready backend system** with:
+This project demonstrates a production-ready backend system with:
 
-- ✅ **Secure Authentication:** JWT-based with bcryptjs password hashing
-- ✅ **Role-Based Access Control:** User and Admin roles with middleware enforcement
-- ✅ **CRUD APIs:** Complete task management system with comments
-- ✅ **Scalable Architecture:** Modular structure with separation of concerns
-- ✅ **Type Safety:** Full TypeScript support for backend and frontend
-- ✅ **Input Validation:** Comprehensive request validation with Joi
-- ✅ **Security Headers:** Helmet.js for protection against common vulnerabilities
-- ✅ **Responsive UI:** Next.js with Tailwind CSS and Shadcn/UI components
+- Secure Authentication: JWT-based with bcryptjs password hashing
+- Role-Based Access Control: User and Admin roles with middleware enforcement
+- CRUD APIs: Complete task management system with comments
+- Scalable Architecture: Modular structure with separation of concerns
+- Type Safety: Full TypeScript support for backend and frontend
+- Input Validation: Comprehensive request validation with Joi
+- Security Headers: Helmet.js for protection against common vulnerabilities
+- Responsive UI: Next.js with Tailwind CSS and Shadcn/UI components
 
-## 🏗️ Architecture
+## Architecture
 
 ### Backend Structure
 
@@ -51,7 +51,7 @@ frontend/
 └── package.json
 ```
 
-## 🚀 Quick Start
+##  Quick Start
 
 ### Prerequisites
 
@@ -134,7 +134,7 @@ frontend/
 
    Frontend runs on `http://localhost:3000`
 
-## 📚 API Documentation
+##  API Documentation
 
 ### Base URL
 ```
@@ -329,7 +329,7 @@ Access interactive API documentation:
 http://localhost:5000/api-docs
 ```
 
-## 🔐 Security Features
+##  Security Features
 
 ### Authentication & Authorization
 - **JWT Tokens:** 7-day expiring tokens with HS256 algorithm
@@ -354,7 +354,7 @@ http://localhost:5000/api-docs
 - **User Status Check:** Inactive users cannot access APIs
 - **Role-Based Access:** Authorization middleware enforces roles
 
-## 📈 Scalability Architecture
+##  Scalability Architecture
 
 ### Current Implementation
 - RESTful API design following HTTP standards
@@ -431,7 +431,7 @@ CMD ["npm", "start"]
 - **GCP:** Cloud Run for serverless, Cloud SQL for database
 - **Heroku:** Simple deployment with environment variables
 
-## 🧪 Testing
+##  Testing
 
 ### Run Tests
 ```bash
@@ -444,7 +444,7 @@ cd frontend
 npm test
 ```
 
-## 📊 Database Schema
+##  Database Schema
 
 ### User Table
 ```sql
@@ -504,7 +504,7 @@ MIT License - See LICENSE file for details
 
 ---
 
-## 📞 Support
+##  Support
 
 For issues or questions:
 1. Check the API documentation at `/api-docs`
