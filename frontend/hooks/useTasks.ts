@@ -23,12 +23,14 @@ export const useTasks = () => {
     fetchTasks();
   }, []);
 
-  const fetchTasks = async () => {
+  const fetchTasks = async (showToast = false) => {
     try {
       setLoading(true);
       const response: any = await taskAPI.getTasks();
       setTasks(response.data || []);
-      toast.success('Tasks loaded successfully');
+      if (showToast) {
+        toast.success('Tasks refreshed');
+      }
     } catch (err: any) {
       toast.error(err.message || 'Failed to load tasks');
       setTasks([]);
@@ -58,7 +60,7 @@ export const useTasks = () => {
     if (!confirm('Delete this task?')) return;
     try {
       await taskAPI.delete(id);
-      toast.success('Task deleted successfully');
+      toast.success('Task deleted');
       fetchTasks();
       setSelectedTasks(prev => {
         const next = new Set(prev);

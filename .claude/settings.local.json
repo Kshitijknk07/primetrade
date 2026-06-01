@@ -21,7 +21,11 @@
       "Bash(git commit -m 'docs: Professional cleanup - remove all emojis and internship references *)",
       "Bash(psql -h localhost -U primetrade_user -d primetrade -c \"\\\\dt\")",
       "Bash(PGPASSWORD='primetrade123' psql *)",
-      "Bash(npm install *)"
+      "Bash(npm install *)",
+      "Bash(curl -s http://localhost:5000/health)",
+      "Bash(curl -s -X POST http://localhost:5000/api/v1/auth/login -H 'Content-Type: application/json' -d '{\"email\":\"test@test.com\",\"password\":\"wrongpassword\"}')",
+      "Bash(curl -s -X POST http://localhost:5000/api/v1/auth/register -H 'Content-Type: application/json' -d '{ *)",
+      "Bash(curl -s -X POST http://localhost:5000/api/v1/auth/login -H 'Content-Type: application/json' -d '{\"email\":\"testuser@example.com\",\"password\":\"TestPass123!\"}')"
     ]
   }
 }
